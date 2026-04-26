@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/f3787dbe-33eb-436b-9cf2-1d1fe33e002d\" -o star-vector.svg)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/87fd6d20-b049-4bbe-a220-73a4b138b17c\" -o carousel-bg-blur.png)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/79fbca68-7c96-4d00-8fe5-b4865705e36a\" -o carousel-alps.jpg)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/076f867b-837b-479e-825c-3f2310c8cd8e\" -o carousel-yosemite.jpg)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/4a06801d-d0c7-458d-8d25-4c793aeea3c6\" -o carousel-algarve.jpg)",
+      "Bash(ls /c/Users/Stiflah/src/Photofolio/public/images/*.svg)"
+    ]
+  }
+}
