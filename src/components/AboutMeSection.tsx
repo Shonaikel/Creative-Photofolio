@@ -1,3 +1,5 @@
+import { useInView } from "../hooks/useInView";
+
 const stats = [
   { icon: "/images/icon-camera.svg", value: "500+", label: "Projects Completed" },
   { icon: "/images/icon-award.svg", value: "15", label: "Awards Won" },
@@ -6,11 +8,13 @@ const stats = [
 ];
 
 export default function AboutMeSection() {
+  const [ref, inView] = useInView();
+
   return (
     <section id="about" className="relative w-full bg-[var(--bg-page)]">
       <div className="container-custom py-12 md:py-16 lg:py-[80px]">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-[32px] lg:gap-[64px]">
-          <div className="relative w-full md:w-[44%] lg:w-[48%] xl:w-[608px] shrink-0 md:flex md:flex-col">
+        <div ref={ref} className="flex flex-col md:flex-row gap-8 md:gap-[32px] lg:gap-[64px]">
+          <div className={`relative w-full md:w-[44%] lg:w-[48%] xl:w-[608px] shrink-0 md:flex md:flex-col anim-fade-left ${inView ? "in-view" : ""}`}>
             <div className="relative w-full aspect-[611/600] md:aspect-auto md:flex-1 md:min-h-0 rounded-[18px] overflow-hidden">
               <img
                 src="/images/about-photo.jpg"
@@ -34,7 +38,10 @@ export default function AboutMeSection() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 md:gap-8 lg:gap-[32px] flex-1">
+          <div
+            className={`flex flex-col gap-6 md:gap-8 lg:gap-[32px] flex-1 anim-fade-right ${inView ? "in-view" : ""}`}
+            style={{ transitionDelay: inView ? "150ms" : "0ms" }}
+          >
             <div className="relative">
               <p className="font-inter font-semibold text-[13px] md:text-[14px] leading-[20px] tracking-[0.7px] text-[var(--accent)]">
                 ABOUT ME
@@ -65,10 +72,11 @@ export default function AboutMeSection() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:gap-4 xl:gap-6">
-              {stats.map((stat) => (
+              {stats.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className="relative w-full h-[120px] sm:h-[130px] md:h-[140px] xl:h-[150px] rounded-[10px] border border-solid bg-[var(--bg-card)] border-[var(--border-color)]"
+                  className={`relative w-full h-[120px] sm:h-[130px] md:h-[140px] xl:h-[150px] rounded-[10px] border border-solid bg-[var(--bg-card)] border-[var(--border-color)] anim-fade-up ${inView ? "in-view" : ""}`}
+                  style={{ transitionDelay: inView ? `${200 + i * 80}ms` : "0ms" }}
                 >
                   <img
                     src={stat.icon}

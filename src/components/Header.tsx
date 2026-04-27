@@ -52,7 +52,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-[64px] md:h-[80px]">
             <a
               href="#home"
-              onClick={() => handleLinkClick("Home")}
+              onClick={(e) => { e.preventDefault(); handleLinkClick("Home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="font-inter font-bold text-[18px] md:text-[20px] leading-[28px] text-[var(--text-heading)] transition-all duration-300 hover:text-[var(--hover-title-color)] hover:[text-shadow:var(--hover-title-glow)]"
             >
               JenRodga

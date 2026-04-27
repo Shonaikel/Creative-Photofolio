@@ -1,13 +1,16 @@
+import { useInView } from "../hooks/useInView";
+
 export default function HeroSection() {
   const year = new Date().getFullYear();
+  const [ref, inView] = useInView({ delay: 1400 });
 
   return (
     <section id="home" className="relative w-full overflow-hidden">
       <div className="container-custom px-6 md:px-10 lg:px-16 py-3 md:py-5 lg:py-[48px]">
-        <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-start justify-between gap-3 md:gap-16 lg:gap-15">
+        <div ref={ref} className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-start justify-between gap-3 md:gap-16 lg:gap-15">
 
           {/* LEFT: all decorative elements as a single scalable SVG */}
-          <div className="w-full md:w-[55%] px-4 md:px-0">
+          <div className={`w-full md:w-[55%] px-4 md:px-0 anim-fade-left ${inView ? "in-view" : ""}`}>
             <svg
               viewBox="0 0 480 350"
               width="100%"
@@ -81,7 +84,10 @@ export default function HeroSection() {
           </div>
 
           {/* RIGHT: Jennie heading + bio */}
-          <div className="w-full md:w-auto flex flex-col max-w-[450px] my-auto">
+          <div
+            className={`w-full md:w-auto flex flex-col max-w-[450px] my-auto anim-fade-right ${inView ? "in-view" : ""}`}
+            style={{ transitionDelay: inView ? "150ms" : "0ms" }}
+          >
             <p className="font-playfair font-semibold italic text-[48px] sm:text-[64px] md:text-[56px] lg:text-[80px] xl:text-[105px] leading-[1] whitespace-nowrap text-[var(--jennie-color)]">
               Jennie
             </p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useInView } from "../hooks/useInView";
 
 type Category = "ALL" | "PORTRAIT" | "ABSTRACT" | "WEDDING" | "NATURE";
 
@@ -57,6 +58,7 @@ function distributeToColumns(items: GalleryItem[], colCount: number): GalleryIte
 
 export default function GallerySection() {
   const [activeCategory, setActiveCategory] = useState<Category>("ALL");
+  const [ref, inView] = useInView({ threshold: 0.08 });
 
   const filteredItems =
     activeCategory === "ALL"
@@ -73,7 +75,7 @@ export default function GallerySection() {
 
   return (
     <section id="gallery" className="relative w-full bg-[var(--bg-page)]">
-      <div className="container-custom pt-10 md:pt-[64px] pb-8 md:pb-[48px]">
+      <div ref={ref} className={`container-custom pt-10 md:pt-[64px] pb-8 md:pb-[48px] anim-fade-up ${inView ? "in-view" : ""}`}>
         <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 md:gap-[16px] mb-8 md:mb-[48px] overflow-x-auto pb-2 scrollbar-none">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;

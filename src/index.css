@@ -73,6 +73,39 @@ section[id] {
   }
 }
 
+@keyframes page-loader-out {
+  0%, 60% { opacity: 1; }
+  100%     { opacity: 0; }
+}
+
+@keyframes page-loader-text-in {
+  from { opacity: 0; letter-spacing: 14px; }
+  to   { opacity: 1; letter-spacing: 7px; }
+}
+
+@keyframes page-loader-bar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.page-loader {
+  animation: page-loader-out 1.5s ease-out forwards;
+}
+
+.page-loader-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 4vw, 34px);
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 7px;
+  animation: page-loader-text-in 0.6s ease-out both;
+}
+
+.page-loader-bar {
+  animation: page-loader-bar 1s ease-out forwards;
+}
+
 @keyframes gallery-fade-in {
   from {
     opacity: 0;
@@ -372,4 +405,25 @@ body {
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Scroll entrance animations ── */
+.anim-fade-up,
+.anim-fade-left,
+.anim-fade-right {
+  opacity: 0;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.anim-fade-up    { transform: translateY(28px); }
+.anim-fade-left  { transform: translateX(-28px); }
+.anim-fade-right { transform: translateX(28px); }
+
+.anim-fade-up.in-view,
+.anim-fade-left.in-view,
+.anim-fade-right.in-view {
+  opacity: 1;
+  transform: translate(0, 0);
 }

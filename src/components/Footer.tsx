@@ -1,3 +1,5 @@
+import { useInView } from "../hooks/useInView";
+
 const socialLinks = [
   { icon: "/images/icon-instagram.svg", label: "Instagram", href: "#" },
   { icon: "/images/icon-linkedin.svg", label: "LinkedIn", href: "#" },
@@ -6,9 +8,11 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [ref, inView] = useInView({ threshold: 0.2 });
+
   return (
     <footer className="relative w-full border-t border-solid bg-[var(--bg-footer)] border-[var(--border-color)]">
-      <div className="container-custom pt-8 md:pt-[49px] pb-8 md:pb-[48px]">
+      <div ref={ref} className={`container-custom pt-8 md:pt-[49px] pb-8 md:pb-[48px] anim-fade-up ${inView ? "in-view" : ""}`}>
         <div className="flex flex-col gap-8 md:gap-[32px]">
 
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-4">

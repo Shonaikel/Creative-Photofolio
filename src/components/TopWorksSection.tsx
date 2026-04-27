@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useInView } from "../hooks/useInView";
 
 const carouselImages = [
   { src: "/images/carousel-alps.jpg", label: "ALPS - SWITZERLAND" },
@@ -14,6 +15,7 @@ export default function TopWorksSection() {
   const [direction, setDirection] = useState<"next" | "prev">("prev");
   const blocked = useRef(false);
   const touchStartX = useRef<number | null>(null);
+  const [sectionRef, inView] = useInView({ threshold: 0.08 });
 
   const total = carouselImages.length;
   const active = carouselImages[activeIndex];
@@ -73,7 +75,8 @@ export default function TopWorksSection() {
         </div>
       </div>
 
-      <div className="relative w-full h-full pt-[32px] md:pt-[44px] lg:pt-[56px] px-4 sm:px-6 md:px-8 lg:px-[44px]">
+      <div ref={sectionRef} className={`relative w-full h-full pt-[32px] md:pt-[44px] lg:pt-[56px] px-4 sm:px-6 md:px-8 lg:px-[44px] anim-fade-up ${inView ? "in-view" : ""}`}>
+
         <div
           className="carousel-stage relative w-full h-[360px] sm:h-[420px] md:h-[460px] lg:h-[520px] xl:h-[580px] 2xl:h-[620px]"
           onTouchStart={handleTouchStart}

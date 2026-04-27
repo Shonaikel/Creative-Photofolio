@@ -1,9 +1,13 @@
+import { useInView } from "../hooks/useInView";
+
 export default function ContactMeSection() {
+  const [ref, inView] = useInView();
+
   return (
     <section id="contact" className="relative w-full bg-[var(--bg-page)]">
       <div className="container-custom py-12 md:py-16 lg:py-[80px]">
-        <div className="flex flex-col md:flex-row w-full gap-10 md:gap-8 lg:gap-[46px] items-start">
-          <div className="relative w-full md:w-[50%] lg:w-[612px] lg:shrink-0">
+        <div ref={ref} className="flex flex-col md:flex-row w-full gap-10 md:gap-8 lg:gap-[46px] items-start">
+          <div className={`relative w-full md:w-[50%] lg:w-[612px] lg:shrink-0 anim-fade-left ${inView ? "in-view" : ""}`}>
             <p className="font-inter font-bold text-[28px] md:text-[32px] xl:text-[36px] leading-[40px] text-[var(--accent)]">
               Contact Me
             </p>
@@ -30,7 +34,10 @@ export default function ContactMeSection() {
             </button>
           </div>
 
-          <div className="relative w-[90%] mx-auto md:w-full md:mx-0 md:flex-1 lg:max-w-[670px] aspect-[670/560] md:mt-[72px] lg:mt-0">
+          <div
+            className={`relative w-[90%] mx-auto md:w-full md:mx-0 md:flex-1 lg:max-w-[670px] aspect-[670/560] md:mt-[72px] lg:mt-0 anim-fade-right ${inView ? "in-view" : ""}`}
+            style={{ transitionDelay: inView ? "150ms" : "0ms" }}
+          >
             <div className="absolute left-[3.73%] top-[4.82%] w-[52.84%] h-[88.57%] rounded-[18px] overflow-hidden shadow-[0_4px_4px_0_rgba(0,0,0,0.5)]">
               <img
                 src="/images/contact-photo-1.jpg"
